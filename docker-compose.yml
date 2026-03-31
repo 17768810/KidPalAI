@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  gateway:
+    build: ./gateway
+    container_name: voice-gateway
+    restart: unless-stopped
+    env_file: ./gateway/.env
+    ports:
+      - "8000:8000"
+    networks:
+      - kidpal-net
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    depends_on:
+      - gateway
+    networks:
+      - kidpal-net
+
+networks:
+  kidpal-net:
+    driver: bridge

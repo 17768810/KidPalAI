@@ -1,0 +1,21 @@
+menu "KidPalAI Configuration"
+
+config KIDPAL_WIFI_SSID
+    string "WiFi SSID"
+    default "myssid"
+    help
+        SSID of the WiFi network the device will connect to.
+
+config KIDPAL_WIFI_PASS
+    string "WiFi Password"
+    default "mypassword"
+    help
+        Password of the WiFi network.
+
+config KIDPAL_GATEWAY_URL
+    string "Voice Gateway URL"
+    default "https://yourdomain.com/voice"
+    help
+        Full URL of the KidPalAI cloud voice gateway endpoint.
+
+endmenu
